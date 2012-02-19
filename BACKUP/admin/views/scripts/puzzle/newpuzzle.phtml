@@ -1,0 +1,124 @@
+<script type="text/javascript" src="/scripts/flowplayer-3.2.6.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link href="/css/default.css" rel="stylesheet" type="text/css" />
+<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.Jcrop.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="/scripts/swfobject.js"></script>
+<script type="text/javascript" src="/scripts/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-impromptu.3.1.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-uberuploadcropper.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+		$('#UploadPhoto').uberuploadcropper({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'JPG',
+			'fileExt'   : '*.jpg;*.jpeg',
+			//---------------------------------------------------
+			//now the cropper options..
+			//---------------------------------------------------
+			'aspectRatio': 1, 
+			'allowSelect': false,			//can reselect
+			'allowResize' : true,			//can resize selection
+			'setSelect': [ 0, 0, 246, 246 ],	//these are the dimensions of the crop box x1,y1,x2,y2
+			'minSize': [ 246, 246 ],		//if you want to be able to resize, use these
+			//'maxSize': [ 100, 100 ],
+			/*
+			onError: function (a, b, c, d) {
+				if (d.status == 404)
+					alert('Could not find upload script. Use a path relative to: '+'W:\home\test1.ru\www');
+				else if (d.type === "HTTP")
+					alert('error '+d.type+": "+d.status);
+				else if (d.type ==="File Size")
+					alert(c.name+' '+d.type+' Limit: '+Math.round(d.sizeLimit/1024)+'KB');
+				else
+					alert('error '+d.type+": "+d.text);
+			},*/
+			//---------------------------------------------------
+			//now the uber options..
+			//---------------------------------------------------
+			'cropScript': '/uploadify/crop2.php',
+			'onComplete': function(imgs,data){ 
+				$('#PhotoPrev').attr('src','/uploads/thumb_'+imgs[0].name +'?d='+ (new Date()).getTime()); 
+				$('#file').attr('value',imgs[0].name);
+			}
+		});
+
+
+		$('#vid_file').uploadify({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'MP4,MOV',
+			'fileExt'   : '*.mp4;*.mov',
+			'onComplete': function(event, ID, fileObj, response, data){ 
+				$('#vid').attr('value',fileObj.name);
+			}
+		});
+		
+		$('#vid2_file').uploadify({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'MP4,MOV',
+			'fileExt'   : '*.mp4;*.mov',
+			'onComplete': function(event, ID, fileObj, response, data){ 
+				$('#vid2').attr('value',fileObj.name);
+			}
+		});	
+});
+</script>
+<div id="zendform" class="zendform">
+<form enctype="application/x-www-form-urlencoded" class="global_form" id="editform" action="" method="post">
+<div><h3>New puzzle</h3> 
+<div class="form-elements"> 
+<dl class="zend_form">
+<?php //print_r($this->form->getElements()); exit();?>
+<?=$this->form->pack;?>
+<?=$this->form->name;?>
+<?=$this->form->status;?>
+<?=$this->form->file?>
+		<input type="file" name="UploadPhoto" id="UploadPhoto" /> 
+		<img src="photo_not_available.png" id="PhotoPrev" alt="Photo Preview" />
+		<hr>
+<?=$this->form->vid;?>
+		<input type="file" name="vid_file" id="vid_file" /> 
+		<hr>
+<?=$this->form->vid2;?>
+		<input type="file" name="vid2_file" id="vid2_file" /> 
+<hr>
+<?=$this->form->submit?>
+</dl>
+</div>
+</div>
+</form>
+</div>
+<BR><BR><BR>
+
+
+
+
+
+
+

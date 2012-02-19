@@ -1,0 +1,19 @@
+<?php $colls_number = Config::get('image-library', 'filemanager_colls_number'); ?>
+
+<table id="files">
+	<tr>
+	<?php $coll = 1; ?>
+	<? foreach ($this->files as $file) : ?>
+		<?=$this->partial('index/_file.phtml', array(
+			'file'  => $file,
+            'cache' => isset($this->cache) ? $this->cache : true,
+		))?>
+		<? if ($coll == $colls_number) : ?>
+			</tr><tr>
+			<? $coll = 1; ?>
+		<? else : ?>
+			<? $coll ++; ?>
+		<? endif; ?>
+	<? endforeach; ?>
+	</tr>
+</table>

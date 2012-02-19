@@ -1,0 +1,27 @@
+<div style="z-index:9999;position:absolute;top:50px;left:50px;" class="edit_image_popup" id="preImagePopup" style="display: block;">
+    <h2>Edit image</h2>
+    <a href="javascript:void(0);" class="close_popup close_button"><img src="images/close_popup.jpg" alt="Close" border="0" /></a>
+
+    <table><tr>
+        <td class="upl_img">
+            <div style="padding-left:<? if ($this->is_image_lib_empty) : ?>162px;<? else : ?>80px;<? endif; ?>" class="upload_image">
+                <?=$this->partial('index/form/upload.phtml', array(
+                    'form'              => $this->form,
+                    'is_upload_enabled' => $this->is_upload_enabled,
+                ))?>
+            </div>
+        </td>
+        <? if (!$this->is_image_lib_empty) : ?>
+        <td style="width:5px;"><img src="/images/edit_img_popup_sep.png" alt="" /></td>
+        <td class="go_to_lib">
+            <a href="javascript:void(0);" id="go_to_lib"><img src="/images/go_to_lib.jpg" alt="" /></a>
+        </td>
+        <? endif; ?>
+    </tr></table>
+
+    <table style="margin-top:7px;"><tr>
+        <td style="width:50%;padding-right:5px;" align="right"><a href="javascript:void(0);" id="upload"><img src="/images/upload.png" alt="" /></a></td>
+        <td style="width:50%;padding-left:5px;" align="left"><a href="javascript:void(0);" class="close_popup"><img src="/images/cancel.png" alt="" /></a></td>
+    </tr></table>
+
+</div> 

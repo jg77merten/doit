@@ -1,0 +1,29 @@
+<div class="topic-trail-list">
+    <?php $i = 0; ?>
+    <?php foreach ($this->topicTrail as $topic): ?>
+
+        <?php if ((++$i % 3) == 1) : ?>
+            <div class="trail-row <?php echo ((floor($i / 3) + 1) % 2 == 0) ? 'even' : 'odd' ?>">
+            <?php endif; ?>
+            <div class="article article-<?php echo $i; ?> <?php echo $topic->topic_type; ?><?php if ($topic->private) : ?> private<?php endif; ?>">
+                <?php if ($topic->User->avatar): ?><div class="upic"><?php echo $this->thumbnail(array('url' => $topic->User->getAvatarPath(), 'width' => 50, 'height' => 50)); ?></div><?php endif; ?>
+                <div class="article-content">
+                    <?php if ($topic->topic_type == 'picture_topic') : echo '<div style="background-image:url(upload/pictures/' . $topic->picture_path . ');">';
+                    endif; ?>
+                    <div class="article-head"><a class="author-profile-link" href="<?php echo $this->url(array('user_id' => $topic->User->id), 'UserProfileViewProfile'); ?>"><?php echo $topic->User->username; ?></a></div>
+                    <a class="discussing-article" href="topic/<?php echo $topic->id; ?>">
+                        <?php if ($topic->topic_type == 'picture_topic') : echo '<span class="picture-topic-content-bg">';
+                        endif; ?>
+                        <?php echo $topic->contents; ?>
+                        <?php if ($topic->topic_type == 'picture_topic') : echo '</span>';
+                        endif; ?>
+                    </a>
+                    <?php if ($topic->topic_type == 'picture_topic') : echo '</div>';
+                    endif; ?>
+                </div>
+            </div>
+            <?php if (($i % 3) == 0) : ?>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>

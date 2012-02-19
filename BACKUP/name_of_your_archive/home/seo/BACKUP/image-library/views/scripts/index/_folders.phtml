@@ -1,0 +1,5 @@
+<ul id="folders">
+	<? foreach ($this->folders as $folder) : ?>
+	<li><a href="<?=urlencode(basename($folder['url']))?>"<? if ($folder['active']) : ?> class="active"<? endif; ?>><?=$this->escape(basename($folder['name']))?></a></li>
+	<? endforeach; ?>
+</ul>

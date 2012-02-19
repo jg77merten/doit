@@ -1,0 +1,13 @@
+<? if (!$this->is_upload_enabled) : ?>
+    <span class="upload_dis"><?=__('Upload disabled', $this->url(array(), 'UserProfile_PayedSubscription'))?></span>
+<? else : ?>
+
+<?=$this->form('upload', array(
+	'action' => $this->url(array(), 'ImageLibraryFileUpload'),
+	'method' => $this->form->getMethod(),
+	'id' => 'upload',
+))?> 
+	    <?=$this->form->file->setAttribs(array('id'=>'file','size'=>'16'))->renderFile()?>      
+</form>
+
+<? endif; ?>

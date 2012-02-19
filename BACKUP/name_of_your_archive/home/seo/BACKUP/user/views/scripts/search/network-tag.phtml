@@ -1,0 +1,20 @@
+<?php $topics = $this->topics->execute();?>
+Topics (<?php echo $this->topics->getNumResults(); ?>)
+<?php
+    foreach ($topics as $topic) {
+        ?>
+        <a href="<?php echo $this->url(array('user_id' => $topic->User->id), 'UserProfileViewProfile' )?>">
+            <?php echo $this->thumbnail(array('url' => $topic->User->getAvatarPath(), 'width' => 50, 'height' => 50));?>
+        </a>
+        <a href="<?php echo $this->url(array('user_id' => $topic->User->id), 'UserProfileViewProfile' )?>"><?php echo $topic->User->username; ?></a>
+        <?php if($topic->isActive()):?>
+            Active <?php echo $topic->getParticipantsCount();?>
+        <?php endif; ?>
+        <?php if($topic->isClosed()):?>
+            Closed
+        <?php endif; ?>
+        <?php echo $this->modify($topic->contents, 'substr:0:15')?>
+        <?php echo __('TOPIC_TYPE_' . $topic->topic_type);?>
+        <?php
+    }
+?>

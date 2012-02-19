@@ -1,0 +1,32 @@
+/*
+Default style for WP-PageNavi plugin
+
+http://wordpress.org/extend/plugins/wp-pagenavi/
+*/
+
+.wp-pagenavi {
+	width: 100%;
+	overflow: hidden;
+	clear: both;
+}
+
+.wp-pagenavi a, .wp-pagenavi span {
+	background: #262626;
+	display: inline-block;
+	margin: 2px;
+	padding: 3px 9px;
+	text-decoration: none;
+	color: #fff;
+}
+
+.wp-pagenavi a:hover, .wp-pagenavi span.current {
+	background: #898989;
+}
+
+.wp-pagenavi span.current {
+	font-weight: bold;
+}
+
+span.pages {
+	float: right;
+}

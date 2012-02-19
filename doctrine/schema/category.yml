@@ -1,0 +1,27 @@
+Category:
+  columns:
+    id:
+      type: integer(4)
+      autoincrement: true
+      primary: true
+    title:
+      type: string(255)
+      notnull: true
+    status:
+      type: integer(1)
+      default: 1
+    titlehead:
+      type: string(255)
+      notnull: true
+    keywordshead:
+      type: string(255)
+      notnull: true
+    descriptionhead:
+      type: string(255)
+      notnull: true
+  actAs:
+    FinalView_Doctrine_Template_Sortable:
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8

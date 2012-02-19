@@ -1,0 +1,18 @@
+<?php $this->headScript()
+        ->appendFile('scripts/page/profile-settings.js');
+?>
+
+<?php echo $this->partial('_userInfo.phtml'); ?>
+
+<div class="rightcol">
+    <div class="editprofile c-wrapper">
+        <h2 class="edit-page-title">Edit profile</h2>
+        
+        <?=$this->navigation()->menu($this->navigation['profile-edit']);?>
+        
+        <h3 class="form-title">Settings</h3>
+        
+        <?php echo $this->form; ?>
+        
+    </div>
+</div>

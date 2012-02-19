@@ -1,0 +1,54 @@
+<script type="text/javascript" src="/scripts/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/flowplayer-3.2.6.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+
+
+
+<dl class="zend_form">
+<?php 
+$image480 = $this->puzzle->image960;
+if (preg_match('/^(.+?)(_)(960)(.+?)$/ism',$this->puzzle->image960,$matches)) {
+	$image480 = $matches[1].$matches[2].'480'.$matches[4];	
+	
+}
+
+?>
+Name: <?=$this->puzzle->name;?><BR>
+Image: <BR><img src="/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/<?=$this->puzzle->image960?>">
+<BR>
+Thumb:<BR><img src="/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/<?=$this->puzzle->image246?>">
+<BR>Video 1<BR>
+<div id="player" style="width:300px;height:200px"></div>
+
+<!-- flowplayer configuration -->
+<script>
+$f("player", "/player/flowplayer-3.2.7.swf", {
+	clip: {
+		autoPlay: false,
+		autoBuffering: true,
+
+		baseUrl: '/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/',
+		url: '<?=$this->puzzle->Video1?>'
+	}
+});
+</script>
+
+<BR>Video 2<BR>
+<div id="player2" style="width:300px;height:200px"></div>
+
+<!-- flowplayer configuration -->
+<script>
+$f("player2", "/player/flowplayer-3.2.7.swf", {
+	clip: {
+		autoPlay: false,
+		autoBuffering: true,
+		baseUrl: '/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/',
+		url: '<?=$this->puzzle->Video2?>'
+	}
+});
+</script>
+<BR><a href="/admin/pack/<?=$this->puzzle->pack_id?>/generate.html">Accept</a>
+<BR><BR>
+<a href="/admin/puzzle/<?=$this->puzzle->id?>/editpuzzle.html">Edit information</a>
+</dl>

@@ -1,0 +1,13 @@
+<?php
+    $this->headScript()->appendFile('scripts/page/search.js');
+?>
+<?php if($this->users):?>
+<div class="_search-container _users">
+    <?php echo $this->render('search/search-users.phtml') ?>
+</div>
+<?php endif;?>
+<?php if($this->topics):?>
+<div class="_search-container _topics">
+    <?php echo $this->render('search/search-topics.phtml') ?>
+</div>
+<?php endif;?>

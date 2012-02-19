@@ -1,0 +1,10 @@
+<div class="blokkspot">
+<?php $user = $this->user(); ?>
+<?php if ($user): ?>
+    <h3>Blokk Spot</h3>
+    <?php foreach ($user->getBlokkSpot() as $spot): ?>
+        <?php echo $spot->Topic->contents; ?>
+        <br/>
+    <?php endforeach; ?>
+<?php endif; ?>
+</div>

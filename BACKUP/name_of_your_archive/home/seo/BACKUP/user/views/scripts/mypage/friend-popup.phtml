@@ -1,0 +1,11 @@
+<?php foreach ($this->friends as $friend): ?>
+    <span id="friend-<?php echo $friend->Friend->id ?>" class="friend-select">
+        <?php echo $this->thumbnail(array('url' => $friend->Friend->getAvatarPath(), 'width' => 100, 'height' => 100)); ?>
+        <br/>
+        <?php echo $friend->Friend->username ?>
+    </span>
+<?php endforeach; ?>
+<input type="button" id="friend-invite" value="Invite"/>
+<input type="button" id="friend-cancel" value="Cancel"/>
+
+

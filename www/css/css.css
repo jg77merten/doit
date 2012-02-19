@@ -1,0 +1,8 @@
+@media screen {
+@font-face {
+  font-family: 'PT Sans';
+  font-style: normal;
+  font-weight: normal;
+  src: local('PT Sans'), local('PTSans-Regular'), url('/images/font.woff') format('woff');
+}
+}

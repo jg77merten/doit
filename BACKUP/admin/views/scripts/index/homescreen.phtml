@@ -1,0 +1,97 @@
+		<link href="/css/default.css" rel="stylesheet" type="text/css" />
+		<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+		<link href="/css/jquery.Jcrop.css" rel="stylesheet" type="text/css" /> 
+		<script type="text/javascript" src="/scripts/swfobject.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.uploadify.v2.1.4.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery-impromptu.3.1.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.Jcrop.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery-uberuploadcropper.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+		$('#UploadPhoto').uberuploadcropper({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'JPG',
+			'fileExt'   : '*.jpg;*.jpeg',
+			//---------------------------------------------------
+			//now the cropper options..
+			//---------------------------------------------------
+			'aspectRatio': 0, 
+			'allowSelect': false,			//can reselect
+			'allowResize' : true,			//can resize selection
+			'setSelect': [ 0, 0, 1024, 768 ],	//these are the dimensions of the crop box x1,y1,x2,y2
+			'minSize': [ 1024, 768 ],		//if you want to be able to resize, use these
+
+			//---------------------------------------------------
+			//now the uber options..
+			//---------------------------------------------------
+			'cropScript': '/uploadify/crop3.php',
+			'onComplete': function(imgs,data){ 
+				$('#PhotoPrev2').attr('src','/uploads/'+imgs[0].name +'?d='+ (new Date()).getTime()); 
+				$('#file').attr('value','/uploads/'+imgs[0].name);
+			}
+		});
+
+		$('#UploadPhoto1').uberuploadcropper({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'JPG',
+			'fileExt'   : '*.jpg;*.jpeg',
+			//---------------------------------------------------
+			//now the cropper options..
+			//---------------------------------------------------
+			'aspectRatio': 0, 
+			'allowSelect': false,			//can reselect
+			'allowResize' : true,			//can resize selection
+			'setSelect': [ 0, 0, 960, 640 ],	//these are the dimensions of the crop box x1,y1,x2,y2
+			'minSize': [ 960, 640 ],		//if you want to be able to resize, use these
+
+			//---------------------------------------------------
+			//now the uber options..
+			//---------------------------------------------------
+			'cropScript': '/uploadify/crop3.php',
+			'onComplete': function(imgs,data){ 
+				$('#PhotoPrev3').attr('src','/uploads/'+imgs[0].name +'?d='+ (new Date()).getTime()); 
+				$('#file2').attr('value','/uploads/'+imgs[0].name);
+			}
+		});
+
+});
+</script>
+<div id="zendform" class="zendform">
+<form enctype="application/x-www-form-urlencoded" class="global_form" id="editform" action="" method="post">
+<div><h3>Homescreen</h3> 
+<div class="form-elements"> 
+<dl class="zend_form">
+<?=$this->form->file?>
+		<input type="file" name="UploadPhoto" id="UploadPhoto" /> 
+		<img src="photo_not_available.png" id="PhotoPrev2" alt="Photo Preview" />
+		<hr>
+<?=$this->form->file2?>
+		<input type="file2" name="UploadPhoto1" id="UploadPhoto1" /> 
+		<img src="photo_not_available.png" id="PhotoPrev3" alt="Photo Preview" />
+<?=$this->form->submit?>
+</dl>
+</div>
+</div>
+</form>
+<div align="left" style="padding-left:140px;">1024 image<BR><img src="/packs/home/home_1024.jpg"></div><BR><BR>
+<div align="left" style="padding-left:140px;">960 image<BR><img src="/packs/home/home_960.jpg"></div>
+</div>
+<BR><BR><BR>

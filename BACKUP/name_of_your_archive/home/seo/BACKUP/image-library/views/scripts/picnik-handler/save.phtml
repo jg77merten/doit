@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?=$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html; charset=utf-8')?>
+    <?=$this->headTitle('ElsePage')?>
+    <base href="<?=BASE_PATH?>" />
+
+    <?=$this->jQuery()?>
+
+    <?=$this->headScript()
+       //->appendFile('scripts/jquery.tools.min.js')
+       //->appendFile('scripts/image-library/init.js')
+       //->appendFile('scripts/customization/widgets.js')
+        ;
+    ?>
+
+    <script type="text/javascript">
+        $(function()
+        {
+            parent.il_reload_files_from_cach = 0;
+            parent.onSelect("<?=$this->image_src . '?' . rand(1, 1000)?>");
+            parent.popup_close('picnik_popup');
+        });
+
+    </script>
+
+</head>
+<body>
+    
+</body>

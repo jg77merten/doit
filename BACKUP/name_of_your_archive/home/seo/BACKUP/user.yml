@@ -1,0 +1,278 @@
+routes:
+  UserRegisterRegister: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/register.html
+    defaults: 
+      module: user
+      controller: register
+      action: register
+
+  UserAuthLogin: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/login.html
+    defaults: 
+      module: user
+      controller: auth
+      action: login
+
+  UserAuthWronglogin:
+    type: Zend_Controller_Router_Route_Static
+    route: user/wronglogin.html
+    defaults:
+      module: user
+      controller: auth
+      action: wronglogin
+
+  UserAuthLogout: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/logout.html
+    defaults: 
+      module: user
+      controller: auth
+      action: logout      
+            
+  UserProfileViewProfile: 
+    type: FinalView_Controller_Router
+    route: user/{:user_id/}index.html
+    defaults: 
+        module: user
+        controller: profile
+        action: view-profile
+
+  UserIndexIndex: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/
+    defaults: 
+      module: user
+      controller: index
+      action: index
+
+  UserRegisterConfirmation: 
+    type: Zend_Controller_Router_Route
+    route: user/role/:role/:email/resend-confirmation.html
+    defaults: 
+      module: user
+      controller: register
+      action: confirmation
+
+  UserAuthForgotPassword: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/forgot-password.html
+    defaults: 
+      module: user
+      controller: auth
+      action: forgot-password
+
+  UserAuthForgotPasswordMailSent: 
+    type: Zend_Controller_Router_Route
+    route: user/:hash/forgot-password-mail-sent.html
+    defaults: 
+      module: user
+      controller: auth
+      action: forgot-password-mail-sent
+
+  UserProfileIndex: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile.html
+    defaults: 
+      module: user
+      controller: profile
+      action: index
+
+  UserProfileFirstlogin: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/firstlogin.html
+    defaults: 
+      module: user
+      controller: profile
+      action: firstlogin
+
+  UserProfileEdit: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/edit.html
+    defaults: 
+      module: user
+      controller: profile
+      action: edit
+
+  UserProfileUploadAvatar: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/upload-avatar.html
+    defaults: 
+      module: user
+      controller: profile
+      action: upload-avatar
+      
+  UserProfileChangeAvatar:
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/change-avatar.html
+    defaults:
+      module: user
+      controller: profile
+      action: change-avatar
+
+  UserProfileSettings: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/settings.html
+    defaults: 
+      module: user
+      controller: profile
+      action: settings
+
+  UserProfileChangePassword: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/change-password.html
+    defaults: 
+      module: user
+      controller: profile
+      action: change-password
+
+  UserMypageIndex: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/mypage.html
+    defaults: 
+      module: user
+      controller: mypage
+      action: index
+
+  UserMessagesIndex: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/messages.html
+    defaults: 
+      module: user
+      controller: messages
+      action: index
+
+  UserMessagesPostTopic: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/messages/post-topic
+    defaults: 
+      module: user
+      controller: messages
+      action: post-topic
+    context: json
+    XMLHttpRequest: true
+
+  UserMessagesPostStatement: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/messages/post-statement
+    defaults: 
+      module: user
+      controller: messages
+      action: post-statement
+    context: json
+    XMLHttpRequest: true
+    
+  UserMessagesPostPicture: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/messages/post-picture_topic
+    defaults: 
+      module: user
+      controller: messages
+      action: post-picture
+    context: json
+#    XMLHttpRequest: true
+    
+  UserInvitationsIndex: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/invitations.html
+    defaults: 
+      module: user
+      controller: invitations
+      action: index
+
+  UserListenerListenertt: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/listener/listenertt.json
+    defaults: 
+      module: user
+      controller: listener
+      action: listenertt
+      type: json
+
+  UserProfileAvatarCrop: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/avatar-crop
+    defaults:
+      module: user
+      controller: profile
+      action: avatar-crop
+    context: json
+    XMLHttpRequest: true
+      
+  UserProfileStateAutocomplite: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/profile/state-autocomplite
+    defaults:
+      module: user
+      controller: profile
+      action: state-autocomplite
+    context: json
+    XMLHttpRequest: true
+
+  UserSearchIndex:
+    type: Zend_Controller_Router_Route_Static
+    route: user/search.html
+    defaults:
+      module: user
+      controller: search
+      action: index
+      
+  UserSearchUsers:
+    type: Zend_Controller_Router_Route
+    route: user/search/:page/users.html
+    XMLHttpRequest: true
+    defaults:
+      module: user
+      controller: search
+      action: search-users
+      
+  UserSearchTopic:
+    type: Zend_Controller_Router_Route
+    route: user/search/:page/topics.html
+    XMLHttpRequest: true
+    defaults:
+      module: user
+      controller: search
+      action: search-topics
+      
+  UserMypageFriendPopup: 
+    type: Zend_Controller_Router_Route_Static
+    route: user/friend-popup
+    defaults:
+      module: user
+      controller: mypage
+      action: friend-popup
+    XMLHttpRequest: true
+
+  UserSearchTag:
+    type: Zend_Controller_Router_Route
+    route: user/search/:keyword/tag.html
+    defaults:
+      module: user
+      controller: search
+      action: tag
+
+  UserSearchNetworkTag:
+    type: Zend_Controller_Router_Route
+    route: user/search/:keyword/network-tag.html
+    defaults:
+      module: user
+      controller: search
+      action: network-tag
+      
+  UserMessagesIndex:
+    type: Zend_Controller_Router_Route_Static
+    route: user/messages.html
+    defaults:
+      module: user
+      controller: messages
+      action: index
+      
+  UserMypageUploadPictureTopic:
+    type: Zend_Controller_Router_Route_Static
+    route: user/mypage/upload-picture-topic.html
+    defaults:
+      module: user
+      controller: mypage
+      action: upload-picture-topic

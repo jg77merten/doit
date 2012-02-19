@@ -1,0 +1,154 @@
+<script type="text/javascript" src="/scripts/flowplayer-3.2.6.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link href="/css/default.css" rel="stylesheet" type="text/css" />
+<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.Jcrop.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="/scripts/swfobject.js"></script>
+<script type="text/javascript" src="/scripts/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-impromptu.3.1.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-uberuploadcropper.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+		$('#UploadPhoto').uberuploadcropper({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'JPG',
+			'fileExt'   : '*.jpg;*.jpeg',
+			//---------------------------------------------------
+			//now the cropper options..
+			//---------------------------------------------------
+			'aspectRatio': 1, 
+			'allowSelect': false,			//can reselect
+			'allowResize' : true,			//can resize selection
+			'setSelect': [ 0, 0, 246, 246 ],	//these are the dimensions of the crop box x1,y1,x2,y2
+			'minSize': [ 246, 246 ],		//if you want to be able to resize, use these
+			//'maxSize': [ 100, 100 ],
+			/*
+			onError: function (a, b, c, d) {
+				if (d.status == 404)
+					alert('Could not find upload script. Use a path relative to: '+'W:\home\test1.ru\www');
+				else if (d.type === "HTTP")
+					alert('error '+d.type+": "+d.status);
+				else if (d.type ==="File Size")
+					alert(c.name+' '+d.type+' Limit: '+Math.round(d.sizeLimit/1024)+'KB');
+				else
+					alert('error '+d.type+": "+d.text);
+			},*/
+			//---------------------------------------------------
+			//now the uber options..
+			//---------------------------------------------------
+			'cropScript': '/uploadify/crop2.php',
+			'onComplete': function(imgs,data){ 
+			$('#PhotoPrev').attr('src','/uploads/thumb_'+imgs[0].name +'?d='+ (new Date()).getTime()); 
+			$('#file').attr('value',imgs[0].name);
+			$('#thumb').fadeOut();
+			}
+		});
+		$('#vid_file').uploadify({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'MOV,MP4',
+			'fileExt'   : '*.mp4;*.mov',
+			'onComplete': function(event, ID, fileObj, response, data){ 
+				$('#vid').attr('value',fileObj.name);
+			}
+		});
+		
+		$('#vid2_file').uploadify({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'MOV,MP4',
+			'fileExt'   : '*.mp4;*.mov',
+			'onComplete': function(event, ID, fileObj, response, data){ 
+				$('#vid2').attr('value',fileObj.name);
+			}
+		});	
+});
+</script>
+
+
+
+<div style="position:relative; left:140px;">Back to: <a href="/admin/puzzle/<?=$this->puzzle->pack_id;?>/index.html"><b><?=$this->puzzle->Puzzlepack->name;?></b></a></div><BR>
+<form enctype="multipart/form-data" action="" method="post"><dl class="zend_form">
+<?php 
+$image480 = $this->puzzle->image960;
+if (preg_match('/^(.+?)(_)(960)(.+?)$/ism',$this->puzzle->image960,$matches)) {
+	$image480 = $matches[1].$matches[2].'480'.$matches[4];	
+	
+}
+
+?>
+<div style="display:none;">
+<?=$this->form->pack_id;?></div>
+<?=$this->form->status;?>
+<?=$this->form->name;?>
+<img src="/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/<?=$this->puzzle->image960?>">
+<?=$this->form->file;?>
+		<input type="file" name="UploadPhoto" id="UploadPhoto" /> 
+		<img src="photo_not_available.png" id="PhotoPrev" alt="Photo Preview" />
+<BR>
+<div id="thumb"><img src="/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/<?=$this->puzzle->image246?>"></div>
+<BR>
+<hr>
+
+
+Video 1<BR>
+<div id="player" style="width:300px;height:200px"></div>
+
+<!-- flowplayer configuration -->
+<script>
+$f("player", "/player/flowplayer-3.2.7.swf", {
+	clip: {
+		autoPlay: false,
+		autoBuffering: true,
+
+		baseUrl: '/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/',
+		url: '<?=$this->puzzle->Video1?>'
+	}
+});
+</script>
+<?=$this->form->vid;?>
+		<input type="file" name="vid_file" id="vid_file" /> 
+		<hr>
+<BR>Video 2<BR>
+<div id="player2" style="width:300px;height:200px"></div>
+
+<!-- flowplayer configuration -->
+<script>
+$f("player2", "/player/flowplayer-3.2.7.swf", {
+	clip: {
+		autoPlay: false,
+		autoBuffering: true,
+		baseUrl: '/packs/<?=$this->puzzle->pack_id?>/<?=$this->puzzle->id?>/',
+		url: '<?=$this->puzzle->Video2?>'
+	}
+});
+</script>
+<?=$this->form->vid2;?>
+		<input type="file" name="vid2_file" id="vid2_file" /> 
+		<hr>
+<?=$this->form->submit;?>
+</dl></form>

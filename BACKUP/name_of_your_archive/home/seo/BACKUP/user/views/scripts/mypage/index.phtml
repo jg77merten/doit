@@ -1,0 +1,98 @@
+<?php $this->headLink()->appendStylesheet('/scripts/ajax-upload/client/fileuploader.css'); ?>
+
+<?php $this->headScript()->prependFile('/scripts/lib/jquery.form.js')
+        ->appendFile('/scripts/ajax-upload/client/fileuploader.js')
+        ->appendFile('scripts/page/my-page.js'); ?>
+<?php echo $this->partial('_userInfo.phtml'); ?>
+<div class="rightcol">
+    <div class="mypage c-wrapper">
+        
+        <div class="world-of-my">
+            <h3>The World of my</h3>
+            <ul>
+                <?php echo $this->partial('_wordOfMine.phtml', array('wordOfMy' => $this->wordOfMy)); ?>
+            </ul>
+        </div>
+        
+        <div class="post-forms">
+            <section class="pf topic-form current">
+                <h3><span>Topic</span></h3>
+                <div class="form">
+                <form method="post" action="" enctype="application/x-www-form-urlencoded">
+                    <?php echo $this->formPostTopic->contents->renderViewHelper(); ?>
+                    <table>
+                        <tr>
+                            <td class="checkboxes">
+                                <?php echo $this->formPostTopic->private->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="private">Private message - <span class="friends-counter">0</span> user(s)</label> <a class="friends-popup-caller">Edit list</a></span>
+                                <?php echo $this->formPostTopic->incognito->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="incognito">Post as incognito</label></span>
+                                <?php echo $this->formPostTopic->topic_type->renderViewHelper(); ?>
+                                <?php $this->formPostTopic->friends->setAttrib('class','friends'); echo $this->formPostTopic->friends->renderViewHelper(); ?>
+                            </td>
+                            <td class="button"><?php echo $this->formPostTopic->topic_submit->renderViewHelper(); ?></td>
+                        </tr>
+                    </table>
+                </form>
+                </div>
+            </section>
+            <section class="pf statement-form">
+                <h3><span>Statement</span></h3>
+                <div class="form">
+                <form method="post" action="" enctype="application/x-www-form-urlencoded">
+                    <?php echo $this->formPostStatement->contents->renderViewHelper(); ?>
+                    <table>
+                        <tr>
+                            <td class="checkboxes">
+                                <?php $this->formPostStatement->private->setAttrib('id','private-s'); echo $this->formPostStatement->private->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="private-s">Private message - <span class="friends-counter">0</span> user(s)</label> <a class="friends-popup-caller">Edit list</a></span>
+                                <?php $this->formPostStatement->incognito->setAttrib('id','incognito-s'); echo $this->formPostStatement->incognito->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="incognito-s">Post as incognito</label></span>
+                                <?php $this->formPostStatement->topic_type->setAttrib('id','topic_type-s'); echo $this->formPostStatement->topic_type->renderViewHelper(); ?>
+                                <?php $this->formPostStatement->friends->setAttrib('id','friends-s')->setAttrib('class','friends'); echo $this->formPostStatement->friends->renderViewHelper(); ?>
+                            </td>
+                            <td class="button"><?php echo $this->formPostStatement->topic_submit->renderViewHelper(); ?></td>
+                        </tr>
+                    </table>
+                </form>
+                </div>
+            </section>
+            <section class="pf picture-form">
+                <h3><span>Picture</span></h3>
+                <div class="form">
+
+                <div id="avatar-upload" data-action="<?php echo $this->url(array(), 'UserMypageUploadPictureTopic')?>">
+                    <noscript>
+                        <p>Please enable JavaScript to use file uploader.</p>
+                        <!-- or put a simple form for upload here -->
+                    </noscript>
+                </div>
+                <form method="post" action="">
+                    <img id="uploaded-picture" width="165" height="165"/>
+                    <?php echo $this->formPostPicture->picture_path->renderViewHelper(); ?>
+                    <?php echo $this->formPostPicture->contents->renderViewHelper(); ?>
+                    <table>
+                        <tr>
+                            <td class="checkboxes">
+                                <?php $this->formPostPicture->private->setAttrib('id','private-p'); echo $this->formPostPicture->private->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="private-p">Private message - <span class="friends-counter">0</span> user(s)</label> <a class="friends-popup-caller">Edit list</a></span>
+                                <?php $this->formPostPicture->incognito->setAttrib('id','incognito-p'); echo $this->formPostPicture->incognito->renderViewHelper(); ?>
+                                <span class="label-wrapper"><label for="incognito-p">Post as incognito</label></span>
+                                <?php $this->formPostPicture->topic_type->setAttrib('id','topic_type-p'); echo $this->formPostPicture->topic_type->renderViewHelper(); ?>
+                                <?php $this->formPostPicture->friends->setAttrib('id','friends-p')->setAttrib('class','friends'); echo $this->formPostPicture->friends->renderViewHelper(); ?>
+                            </td>
+                            <td class="button"><?php echo $this->formPostPicture->topic_submit->renderViewHelper(); ?></td>
+                        </tr>
+                    </table>
+                </form>
+                </div>
+            </section>
+            
+        </div>
+
+        <div style="position:absolute;" id="friends-popup"></div>
+
+        <?php echo $this->partial('_topicTrail.phtml', array('topicTrail' => $this->topicTrail)); ?>
+    </div>
+</div>
+<span id="output"></span>

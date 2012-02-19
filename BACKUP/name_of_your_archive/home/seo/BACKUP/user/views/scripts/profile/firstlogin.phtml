@@ -1,0 +1,35 @@
+<?php
+$this->headLink()->appendStylesheet('/css/jquery.Jcrop.css');
+$this->headLink()->appendStylesheet('/scripts/ajax-upload/client/fileuploader.css');
+
+$this->headScript()
+        ->appendFile('/scripts/lib/jquery.Jcrop.min.js')
+        ->appendFile('/scripts/configs/crop.js')
+        ->appendFile('/scripts/lib/jquery-ui/ui/jquery.ui.dialog.js')
+        ->appendFile('/scripts/avatar-crop.js')
+        ->appendFile('/scripts/ajax-upload/client/fileuploader.js')
+        ->appendFile('/scripts/page/first-login.js');
+?>
+
+Please, provide us additional information about you. You can change it anytime you want.
+<?php echo $this->formEditProfile; ?>
+<div id="avatar-upload" data-action="<?php echo $this->url(array(), 'UserProfileUploadAvatar')?>">
+    <noscript>
+        <p>Please enable JavaScript to use file uploader.</p>
+        <!-- or put a simple form for upload here -->
+    </noscript>
+</div>
+
+<div id="crop-dialog" title="Change avatar">
+    <h2 id="title-jcrop">Crop avatar</h2>
+    <div id="div-jcrop">
+
+        <img src="<?php echo $this->imageSrc; ?>" id="jcrop-img" />
+
+        <input type="button" value="Crop" id="jcrop-button" />
+    </div>
+</div>
+
+<div id="avatar_img">
+ 
+</div>

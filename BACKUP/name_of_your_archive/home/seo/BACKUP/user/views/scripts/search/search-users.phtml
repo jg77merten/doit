@@ -1,0 +1,22 @@
+<?php $users = $this->users->execute();?>
+Users (<?php echo $this->users->getNumResults(); ?>)
+<?php if($this->users->getFirstPage() < $this->users->getPage() ):?>
+    <a class="_prev-page" href="javascript:void()" data-href="<? echo $this->url(array('page' => $this->users->getPage() - 1), 'UserSearchUsers')?>">&lt;&lt;&lt;</a><br />
+<?php else: ?>
+    &lt;&lt;&lt;
+<?php endif;?>
+<?php
+    foreach ($users as $user) {
+        ?>
+        <a href="<?php echo $this->url(array('user_id' => $user->id), 'UserProfileViewProfile' )?>">
+            <?php echo $this->thumbnail(array('url' => $user->getAvatarPath(), 'width' => 100, 'height' => 100));?>
+        </a>
+        <a href="<?php echo $this->url(array('user_id' => $user->id), 'UserProfileViewProfile' )?>"><?php echo $user->username; ?></a>
+        <?php
+    }
+?>
+<?php if($this->users->getLastPage() > $this->users->getPage() ):?>
+    <a class="_next-page" href="javascript:void()" data-href="<? echo $this->url(array('page' => $this->users->getPage() + 1), 'UserSearchUsers')?>">&gt;&gt;&gt;</a>
+<?php else: ?>
+    &gt;&gt;&gt;
+<?php endif;?>

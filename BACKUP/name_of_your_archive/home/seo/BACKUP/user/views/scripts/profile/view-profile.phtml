@@ -1,0 +1,9 @@
+Аvatar: 
+<?php echo $this->htmlImage($this->src($this->user->getAvatarPath())); ?>
+
+<?php if ($this->topicTrail != null): ?>
+    <?php echo $this->partial('_topicTrail.phtml', array('topicTrail' => $this->topicTrail)); ?>
+<?php else: ?>
+    You can't view topics
+    TODO: create user friend request for register users
+<?php endif; ?>

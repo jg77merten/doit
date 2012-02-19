@@ -1,0 +1,22 @@
+Morda:
+  columns:
+    id:
+      type: integer(4)
+      autoincrement: true
+      primary: true
+    image_id:
+      type: integer(4)
+      notnull: true
+    image_order:
+      type: integer(4)
+      notnull: true
+    name:
+      type: string(255)
+    description:
+      type: clob()
+  actAs:
+    Timestampable:
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8

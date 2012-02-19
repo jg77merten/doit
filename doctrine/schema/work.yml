@@ -1,0 +1,106 @@
+Work:
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    status:
+      type: integer(1)
+      notnull: true
+    category_id:
+      type: integer(4)
+      notnull: true
+    name:
+      type: string(50)
+      notnull: true
+    date:
+      type: string(50)
+      notnull: true
+    description:
+      type: clob
+      notnull: true
+    image1:
+      type: string(128)
+    image2:
+      type: string(128)
+    image3:
+      type: string(128)
+    image4:
+      type: string(128)
+    image5:
+      type: string(128)
+    image6:
+      type: string(128)
+    image7:
+      type: string(128)
+    image8:
+      type: string(128)
+    image9:
+      type: string(128)
+    image10:
+      type: string(128)
+    image11:
+      type: string(128)
+    image12:
+      type: string(128)
+    image13:
+      type: string(128)
+    image14:
+      type: string(128)
+    image15:
+      type: string(128)
+    image16:
+      type: string(128)
+    image17:
+      type: string(128)
+    image18:
+      type: string(128)
+    image19:
+      type: string(128)
+    image20:
+      type: string(128)
+    image21:
+      type: string(128)
+    image22:
+      type: string(128)
+    image23:
+      type: string(128)
+    image24:
+      type: string(128)
+    image25:
+      type: string(128)
+    image26:
+      type: string(128)
+    image27:
+      type: string(128)
+    image28:
+      type: string(128)
+    image29:
+      type: string(128)
+    image30:
+      type: string(128)
+    titlehead:
+      type: string(255)
+      notnull: true
+    keywordshead:
+      type: string(255)
+      notnull: true
+    descriptionhead:
+      type: string(255)
+      notnull: true
+  actAs:
+    Timestampable:
+      created:
+        expression: NOW()
+      updated:
+        expression: NOW()
+    FinalView_Doctrine_Template_Sortable:
+  relations:
+    Category:
+      local: category_id
+      foreign: id
+      foreignAlias: Works
+  options:
+    type: INNODB
+    collate: utf8_general_ci
+    charset: utf8

@@ -1,0 +1,59 @@
+<script type="text/javascript" src="/scripts/flowplayer-3.2.6.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<link href="/css/default.css" rel="stylesheet" type="text/css" />
+<link href="/css/uploadify.css" rel="stylesheet" type="text/css" />
+<link href="/css/jquery.Jcrop.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="/scripts/swfobject.js"></script>
+<script type="text/javascript" src="/scripts/jquery.uploadify.v2.1.4.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-impromptu.3.1.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery-uberuploadcropper.js"></script> 
+
+<script type="text/javascript">
+$(document).ready(function() {
+		
+		$('#vid_file').uploadify({
+			//---------------------------------------------------
+			// uploadify options..
+			//---------------------------------------------------
+			'uploader'  : '/scripts/uploadify.swf',
+			'script'    : '/uploadify/uploadify.php',
+			'cancelImg' : '/uploadify/cancel.png',
+			'multi'     : false,
+			'auto'      : true,
+			'folder'    : '/uploads',
+			'fileDesc'  : 'MOV',
+			'fileExt'   : '*.mov',
+			'onComplete': function(event, ID, fileObj, response, data){ 
+				$('#video').attr('value',fileObj.name);
+			}
+		});
+
+});
+</script>
+<form enctype="multipart/form-data" action="" method="post"><dl class="zend_form">
+<hr>
+Video<BR>
+<div id="player" style="width:300px;height:200px"></div>
+
+<!-- flowplayer configuration -->
+<?php 
+$rand = rand(10,1000);
+$rand = "?$rand";
+?>
+<script>
+$f("player", "/player/flowplayer-3.2.7.swf", {
+	clip: {
+		autoPlay: false,
+		autoBuffering: true,
+
+		baseUrl: '/packs/howto/',
+		url: 'howto_big.mov<?=$rand?>'
+	}
+});
+</script>
+<?=$this->form->video;?>
+		<input type="file" name="vid_file" id="vid_file" /> 
+		<hr>
+<?=$this->form->submit;?>
+</dl></form>

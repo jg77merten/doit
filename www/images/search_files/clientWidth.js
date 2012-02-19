@@ -1,0 +1,1 @@
+function setCW(){sj_cook.set("_SS","CW",sj_b.clientWidth);sj_cook.set("_SS","CH",sb_de.clientHeight)}sj_be(_w,"load",setCW);sj_be(_w,"resize",setCW)

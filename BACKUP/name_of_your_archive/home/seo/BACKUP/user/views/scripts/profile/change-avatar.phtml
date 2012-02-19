@@ -1,0 +1,39 @@
+<?php
+
+$this->headLink()->appendStylesheet('/css/jquery.Jcrop.css');
+$this->headLink()->appendStylesheet('/scripts/ajax-upload/client/fileuploader.css');
+
+$this->headScript()
+        ->appendFile('/scripts/lib/jquery.Jcrop.min.js')
+        ->appendFile('/scripts/configs/crop.js')
+        ->appendFile('/scripts/ajax-upload/client/fileuploader.js')
+        ->appendFile('/scripts/page/change-avatar.js');;
+?>
+
+<?php echo $this->partial('_userInfo.phtml'); ?>
+
+<div class="rightcol">
+    <div class="editprofile c-wrapper">
+        <h2 class="edit-page-title">Edit profile</h2>
+
+        <?= $this->navigation()->menu($this->navigation['profile-edit']); ?>
+
+        <h3 class="form-title">Avatar</h3>
+        
+        <div id="avatar-upload" data-action="<?php echo $this->url(array(), 'UserProfileUploadAvatar')?>">
+            <noscript>
+                <p>Please enable JavaScript to use file uploader.</p>
+                <!-- or put a simple form for upload here -->
+            </noscript>
+        </div>
+
+        <div style="padding-top:15px;" id="div-jcrop">
+
+            <img src="<?php echo $this->imageSrc; ?>" id="jcrop-img" />
+            <?php if ($this->imageSrc != null): ?>
+                <input type="button" value="" id="jcrop-button" />
+            <? endif; ?>
+        </div>
+        <div id="avatar_img" style="display:none"></div>
+    </div>
+</div>

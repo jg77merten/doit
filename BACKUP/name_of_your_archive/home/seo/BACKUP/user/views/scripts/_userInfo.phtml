@@ -1,0 +1,18 @@
+<?php $user = $this->user(); ?>
+<aside class="userinfo-col">
+    <?php if ($user): ?>
+        <div class="user-avatar-wrap">
+            <img id="user-avatar" src="<?php echo $this->src($user->getAvatarPath()); ?>" />
+        </div>
+        <div class="user-info">
+            <h3><?php echo $user->fullname; ?></h3>
+            <a class="edit" href="<?php echo $this->url(array(), 'UserProfileEdit'); ?>">Edit</a>
+            <div class="bl">
+                Blokkers - <?php echo $user->getBlokkersCount(); ?>,
+                Blokking <?php echo $user->getBlokkingCount(); ?>
+            </div>
+            Pending <?php //TODO: number of requests to view user’s profile. Shows Requests pop up with the list of new requests     ?>
+        </div>
+        <?php echo $this->partial('_blokkSpot.phtml', 'user'); ?>
+    </aside>
+<?php endif; ?>

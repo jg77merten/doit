@@ -1,0 +1,19 @@
+<td align="center" valign="top">
+<?php
+    if (is_dir($this->file)) {
+        $image_src = ImageLibrary_Utils::getFolderImage();
+    } else {
+        $image_src =  (bool)$this->cache
+            ? $this->file
+            : ($this->file . '?' . rand(0, 1000));
+    }
+?>
+
+	<div class="cell <?=is_dir($this->file) ? 'folder' : 'file'?>">
+		 <div style="width:80px;height:80px;overflow:hidden;"><?=$this->htmlImage($image_src, array('width' => 80))?></div>
+		 <div class="title"><?=$this->escape(pcgbasename($this->file))?></div>
+		<? if (!is_dir($this->file)) : ?>
+			<div class="size"><?=formatBytes(filesize($this->file))?></div>
+		<? endif; ?>
+	</div>
+</td>

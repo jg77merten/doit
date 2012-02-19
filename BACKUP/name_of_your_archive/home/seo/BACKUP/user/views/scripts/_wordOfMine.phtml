@@ -1,0 +1,8 @@
+<?php
+foreach ($this->wordOfMy as $word) {
+    ?> <li><a href="
+            <?php echo $this->url(array('keyword' => $word['topic_index_word']), 'UserSearchNetworkTag' ); ?>
+       ">
+            <?php echo $word['topic_index_word'];?>
+       </a><sup><?php echo $word['topic_rel_count'];?></sup></li><?php
+}
