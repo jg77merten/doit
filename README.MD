@@ -1,4 +1,5 @@
 testmerge1
 testrebase1
 testrebase2
+testPull
 DOIT.by
